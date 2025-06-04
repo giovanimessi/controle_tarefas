@@ -13,7 +13,7 @@
 
 # Controle de Tarefas - 
 
-Sistema simples de controle de tarefas ## 🎓 Etapas do Projeto (Curso)
+Sistema simples de controle de tarefas ## 🎓 
 
 
 1. **Iniciando o projeto Controle de Tarefas** – 
