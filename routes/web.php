@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TarefasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::prefix('painel')->middleware('auth')->group(function(){
+   Route::resource('tarefa', TarefasController::class);
+});
+
