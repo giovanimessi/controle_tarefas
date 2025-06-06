@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TarefasController;
+use App\Mail\MensagemEmail;
+use Illuminate\Support\Facades\Mail;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +27,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::prefix('painel')->middleware('auth')->group(function(){
    Route::resource('tarefa', TarefasController::class);
+});
+Route::get('/mensagem-email',function(){
+
+   // return new MensagemEmail();
+
+   Mail::to('giovanidevelpment@gmail.com')->send(new MensagemEmail());
+   return 'E-mail enviado com sucesso';
+
 });
 
