@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Tarefa;
 use Illuminate\Http\Request;
+//use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth;
 
 class TarefasController extends Controller
 {
@@ -19,8 +21,26 @@ class TarefasController extends Controller
      */
     public function index()
     {
+        
+
+        if(auth()->check()){
+
+           $id = auth()->user()->id;
+           $nome = auth()->user()->name;
+           $email = auth()->user()->email;
+
+           return "Id  $id | Email $email |Nome $nome";
+
+
+
+            
+
+        }else{
+          
+        }
         //
-        echo 'aqui';
+        return "Você não esta logado no sistema!";
+   
        
     }
 
