@@ -30,10 +30,10 @@ Route::prefix('painel')->middleware('auth')->group(function(){
 });
 Route::get('/mensagem-email',function(){
 
-   // return new MensagemEmail();
+   return new MensagemEmail();
 
-   Mail::to('giovanidevelpment@gmail.com')->send(new MensagemEmail());
-   return 'E-mail enviado com sucesso';
+   //Mail::to('giovanidevelpment@gmail.com')->send(new MensagemEmail());
+   //return 'E-mail enviado com sucesso';
 
 });
 
