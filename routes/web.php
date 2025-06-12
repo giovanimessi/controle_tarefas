@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TarefasController;
 use App\Mail\MensagemEmail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
+
 
 
 /*
@@ -21,11 +23,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::prefix('painel')->middleware('auth')->group(function(){
+Route::prefix('painel')->middleware('auth','verified')->group(function(){
    Route::resource('tarefa', TarefasController::class);
 });
 Route::get('/mensagem-email',function(){
