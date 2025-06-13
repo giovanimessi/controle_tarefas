@@ -21,7 +21,7 @@ class TarefasController extends Controller
      */
     public function index()
     {
-        
+        return view('tarefa.create');
 
         if(auth()->check()){
 
@@ -51,7 +51,7 @@ class TarefasController extends Controller
      */
     public function create()
     {
-        //
+        return view('tarefa.create');
     }
 
     /**
