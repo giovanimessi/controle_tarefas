@@ -8,7 +8,8 @@
                 <div class="card-header">{{ __('Adicionar  tarefa') }}</div>
 
                 <div class="card-body">
-                <form>
+                <form method="POST" action="{{route('tarefa.store')}}">
+                    @csrf
                     <div class="mb-3">
                         <label  class="form-label">Tarefa</label>
                         <input type="text" class="form-control" name="tarefa">
@@ -19,7 +20,7 @@
                         <input type="date" class="form-control"name ="data_limite_conclusao">
                     </div>
              
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Cdastrar</button>
                     </form>
             </div>
         </div>

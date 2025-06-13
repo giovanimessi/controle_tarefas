@@ -63,7 +63,19 @@ class TarefasController extends Controller
     public function store(Request $request)
     {
         //
-    }
+       $request->validate([
+        'tarefa' => 'required|string|max:200',
+        'data_limite_conclusao' => 'required|date',
+    ]);
+
+      $tarefa =  \App\Models\Tarefa::create([
+        'tarefa' => $request->tarefa,
+        'data_limite_conclusao' => $request->data_limite_conclusao,
+    ]);
+
+    return redirect()->route('tarefa.show',['tarefa' => $tarefa->id])->with('success', 'Tarefa cadastrada com sucesso!');
+
+      }
 
     /**
      * Display the specified resource.
@@ -74,6 +86,7 @@ class TarefasController extends Controller
     public function show(Tarefa $tarefa)
     {
         //
+        dd($tarefa);
     }
 
     /**
