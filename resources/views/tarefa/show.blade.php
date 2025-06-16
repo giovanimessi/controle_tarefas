@@ -16,6 +16,7 @@
                             value="{{ \Carbon\Carbon::parse($tarefa->data_limite_conclusao)->format('Y-m-d') }}">
                     </div>
               </fieldset>
+              <a href="{{url()->previous()}}" class="btn btn-primary">Voltar</a>
               
             </div>
         </div>
