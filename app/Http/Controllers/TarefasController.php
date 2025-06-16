@@ -6,6 +6,9 @@ use App\Models\Tarefa;
 use Illuminate\Http\Request;
 //use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth;
+use App\Mail\NovaTarefaMail;
+use Illuminate\Support\Facades\Mail;
+
 
 class TarefasController extends Controller
 {
@@ -72,6 +75,8 @@ class TarefasController extends Controller
         'tarefa' => $request->tarefa,
         'data_limite_conclusao' => $request->data_limite_conclusao,
     ]);
+
+   Mail::to(auth()->user()->email)->send(new NovaTarefaMail($tarefa));
 
     return redirect()->route('tarefa.show',['tarefa' => $tarefa->id])->with('success', 'Tarefa cadastrada com sucesso!');
 
