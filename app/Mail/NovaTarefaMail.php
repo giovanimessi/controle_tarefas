@@ -12,6 +12,7 @@ class NovaTarefaMail extends Mailable
 {
     use Queueable, SerializesModels;
      public $tarefa;
+         public $url;
 
 
 
@@ -23,6 +24,8 @@ class NovaTarefaMail extends Mailable
     public function __construct(Tarefa $tarefa)
     {
         $this->tarefa = $tarefa;
+        $this->url = route('tarefa.show', ['tarefa' => $tarefa->id]);  // <-- Aqui gerando a URL
+
     }
 
     /**
@@ -34,6 +37,10 @@ class NovaTarefaMail extends Mailable
     {
         return $this->subject('Nova Tarefa Criada')
                     ->markdown('emails.nova-tarefa')
-                    ->with('tarefa', $this->tarefa);
+                 ->with([
+                        'tarefa' => $this->tarefa,
+                        'url' => $this->url
+                    ]);
+    
     }
 }

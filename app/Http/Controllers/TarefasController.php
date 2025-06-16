@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Auth;
 use App\Mail\NovaTarefaMail;
 use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
 
 
 class TarefasController extends Controller
@@ -90,8 +91,9 @@ class TarefasController extends Controller
      */
     public function show(Tarefa $tarefa)
     {
+
         //
-        dd($tarefa);
+        return view('tarefa.show',['tarefa' => $tarefa]);
     }
 
     /**
