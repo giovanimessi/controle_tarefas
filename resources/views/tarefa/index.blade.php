@@ -31,9 +31,12 @@
                     </table>
                    <nav>
                         <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="{{$tarefa->previousPageUrl()}}">Voltar</a></li>
-                            @for($i=1;$i<= $tarefa->lastPage();$i++)
-                            <li class="page-item"><a class="page-link" href="{{$tarefa->url($i)}}">{{$i}}</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="{{$tarefa->previousPageUrl()}}">Voltar</a></li>
+                            @for($i = 1; $i <= $tarefa->lastPage(); $i++)
+                                <li class="page-item {{ $tarefa->currentPage() == $i ? 'active' : '' }}">
+                                    <a class="page-link" href="{{ $tarefa->url($i) }}">{{ $i }}</a>
+                                </li>
                             @endfor
                             <li class="page-item"><a class="page-link" href="{{$tarefa->nextPageUrl()}}">Proximo</a></li>
                         </ul>
