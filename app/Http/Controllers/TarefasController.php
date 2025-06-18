@@ -25,25 +25,13 @@ class TarefasController extends Controller
      */
     public function index()
     {
-        return view('tarefa.create');
+        $user_id = auth()->user()->id;
+   
+        $tarefa = Tarefa::where('user_id', $user_id)->get();
 
-        if(auth()->check()){
+    
 
-           $id = auth()->user()->id;
-           $nome = auth()->user()->name;
-           $email = auth()->user()->email;
-
-           return "Id  $id | Email $email |Nome $nome";
-
-
-
-            
-
-        }else{
-          
-        }
-        //
-        return "Você não esta logado no sistema!";
+       return view ('tarefa.index', compact('tarefa'));
    
        
     }
@@ -67,19 +55,19 @@ class TarefasController extends Controller
     public function store(Request $request)
     {
         //
-       $request->validate([
-        'tarefa' => 'required|string|max:200',
-        'data_limite_conclusao' => 'required|date',
-    ]);
+        $dados = $request->all('tarefa','data_limite_conclusao');
+        $dados['user_id'] = auth()->user()->id;
 
-      $tarefa =  \App\Models\Tarefa::create([
-        'tarefa' => $request->tarefa,
-        'data_limite_conclusao' => $request->data_limite_conclusao,
-    ]);
 
-   Mail::to(auth()->user()->email)->send(new NovaTarefaMail($tarefa));
+        $tarefa = Tarefa::create($dados);
 
-    return redirect()->route('tarefa.show',['tarefa' => $tarefa->id])->with('success', 'Tarefa cadastrada com sucesso!');
+        $destinatario = auth()->user()->email;
+    
+
+        Mail::to($destinatario)->send(new NovaTarefaMail($tarefa));
+        return redirect()->route('tarefa.show',['tarefa' => $tarefa->id]);
+
+
 
       }
 
