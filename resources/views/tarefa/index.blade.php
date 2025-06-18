@@ -22,14 +22,22 @@
                             <tr>
                                 <th scope="row">{{$tarefas->id}}</th>
                                 <td>{{$tarefas->tarefa}}</td>
-                                <td>{{$tarefas->data_limite_conclusao}}</td>
+                                <td>{{date('d/m/y',strtotime($tarefas->data_limite_conclusao))}}</td>
                           
                             </tr>
                           
                         </tbody>
                         @endforeach
                     </table>
-                </div>
+                   <nav>
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="{{$tarefa->previousPageUrl()}}">Voltar</a></li>
+                            @for($i=1;$i<= $tarefa->lastPage();$i++)
+                            <li class="page-item"><a class="page-link" href="{{$tarefa->url($i)}}">{{$i}}</a></li>
+                            @endfor
+                            <li class="page-item"><a class="page-link" href="{{$tarefa->nextPageUrl()}}">Proximo</a></li>
+                        </ul>
+                 </nav>
             </div>
         </div>
     </div>

@@ -27,7 +27,7 @@ class TarefasController extends Controller
     {
         $user_id = auth()->user()->id;
    
-        $tarefa = Tarefa::where('user_id', $user_id)->get();
+        $tarefa = Tarefa::where('user_id', $user_id)->paginate(1);
 
     
 
