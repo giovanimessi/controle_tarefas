@@ -25,6 +25,13 @@
                                 <td>{{$tarefas->tarefa}}</td>
                                 <td>{{date('d/m/y',strtotime($tarefas->data_limite_conclusao))}}</td>
                                 <td><a href="{{route('tarefa.edit',$tarefas->id)}}">Editar</a></td>
+                                <td>
+                                    <form id="form_{{ $tarefas->id }}" method="POST" action="{{ route('tarefa.destroy', ['tarefa' => $tarefas->id]) }}" style="display: inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" style="border: none; background: none; color: red; padding: 0;">Excluir</button>
+                                    </form>
+                                </td>
                           
                             </tr>
                           
