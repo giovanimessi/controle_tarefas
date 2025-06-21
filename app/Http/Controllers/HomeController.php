@@ -23,6 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-       return view ('tarefa.index');
+       return redirect()->route('tarefa.index');
     }
 }

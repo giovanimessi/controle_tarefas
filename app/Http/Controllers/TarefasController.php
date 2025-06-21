@@ -27,7 +27,7 @@ class TarefasController extends Controller
     {
         $user_id = auth()->user()->id;
    
-        $tarefa = Tarefa::where('user_id', $user_id)->paginate(1);
+        $tarefa = Tarefa::where('user_id', $user_id)->paginate(2);
 
     
 
@@ -93,6 +93,9 @@ class TarefasController extends Controller
     public function edit(Tarefa $tarefa)
     {
         //
+      
+
+        return view('tarefa.edit', ['tarefa' => $tarefa]);
     }
 
     /**
@@ -105,6 +108,15 @@ class TarefasController extends Controller
     public function update(Request $request, Tarefa $tarefa)
     {
         //
+
+        $dados = $request->only(['tarefa','data_limite_conclusao']);
+        $tarefa->update($dados);
+
+        return redirect()->route('tarefa.show',$tarefa->id);
+
+     
+
+       
     }
 
     /**

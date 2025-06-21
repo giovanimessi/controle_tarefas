@@ -14,6 +14,7 @@
                                 <th scope="col">ID</th>
                                 <th scope="col">TAREFA</th>
                                 <th scope="col">DATA LIMITE CONCLUSAO</th>
+                                <th>Acoes</th>
                                 
                             </tr>
                         </thead>
@@ -23,6 +24,7 @@
                                 <th scope="row">{{$tarefas->id}}</th>
                                 <td>{{$tarefas->tarefa}}</td>
                                 <td>{{date('d/m/y',strtotime($tarefas->data_limite_conclusao))}}</td>
+                                <td><a href="{{route('tarefa.edit',$tarefas->id)}}">Editar</a></td>
                           
                             </tr>
                           
