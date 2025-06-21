@@ -93,7 +93,14 @@ class TarefasController extends Controller
     public function edit(Tarefa $tarefa)
     {
         //
-      
+
+         $user_id = auth()->user()->id;
+
+        if($tarefa->user_id != $user_id){
+
+             return view('acesso-negado');
+
+        }
 
         return view('tarefa.edit', ['tarefa' => $tarefa]);
     }
@@ -111,6 +118,8 @@ class TarefasController extends Controller
 
         $dados = $request->only(['tarefa','data_limite_conclusao']);
         $tarefa->update($dados);
+
+
 
         return redirect()->route('tarefa.show',$tarefa->id);
 
