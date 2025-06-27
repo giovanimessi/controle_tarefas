@@ -5,7 +5,12 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header bg-primary text-white">Lista de Tarefas</div>
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <span>Lista de Tarefas</span>
+                    <a href="{{ route('tarefa.create') }}" class="btn btn-light btn-sm text-primary">
+                        Nova Tarefa
+                    </a>
+                </div>
 
                 <div class="card-body">
                     <table class="table table-hover">
